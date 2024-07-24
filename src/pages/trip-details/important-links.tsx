@@ -48,10 +48,10 @@ export function ImportantLinks() {
             </div>
             <Button onClick={openCreateLinkModal} variant="secondary">
                 <Plus className="size-5" />Cadastrar novo link
+            </Button>
                 {openLinkModal && (
                     <CreateLinkModal closeCreateLinkModal={closeCreateLinkModal} />
                 )}
-            </Button>
         </div>
     );
 }
