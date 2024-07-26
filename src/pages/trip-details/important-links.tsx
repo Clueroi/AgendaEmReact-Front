@@ -1,7 +1,7 @@
 import { Link2, Plus } from "lucide-react";
 import { Button } from "../../components/button";
 import { useEffect, useState } from "react";
-import { CreateLinkModal } from "./create-link-modal";
+import { CreateLinkModal } from "./modal/create-link-modal";
 import { api } from "../../lib/axios";
 import { useParams } from "react-router-dom";
 

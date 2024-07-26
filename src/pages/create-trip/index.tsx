@@ -109,7 +109,7 @@ export function CreateTripPage() {
       <div className="w-full max-w-3xl px-6 space-y-10">
 
         <div className='flex flex-col items-center gap-3'>
-            <img src='/logo.svg' alt='plann.er'/>
+            <img src='/logo.png' className='size-20 text-white' alt='Chrono'/>
             <p className="text-zinc-300 text-lg">Convide seus amigos e planeje sua próxima viagem!</p>
         </div>
 
@@ -125,16 +125,16 @@ export function CreateTripPage() {
         />
 
         {isGuestsInputOpen && (
-           <InviteGuestStep
-           emailsToInvite={emailsToInvite}
-           openConfirmTripModal={openConfirmTripModal}
-           openGuestModal={openGuestModal}
-           />
+          <InviteGuestStep
+          emailsToInvite={emailsToInvite}
+          openConfirmTripModal={openConfirmTripModal}
+          openGuestModal={openGuestModal}
+          />
         )}
           
         </div>
 
-            <p className="text-zinc-500">Ao planejar sua viagem pela plann.er você automaticamente concorda<br/>
+            <p className="text-zinc-500">Ao planejar sua viagem pela Chrono você automaticamente concorda<br/>
             com nossos <a className="text-zinc-300" href='#'>termos de uso</a> e <a className="text-zinc-300" href='#'>políticas de privacidade</a>.</p>
       </div>
 
@@ -153,6 +153,8 @@ export function CreateTripPage() {
         createTrip={createTrip}
         setOwnerName={setOwnerName}
         setOwnerEmail={setOwnerEmail}
+        destination={destination}
+        eventStartEnd={eventStartEnd}
         />
       )}
        

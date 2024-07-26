@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { UpdateActivityModal } from "./modal/update-activity-modal";
 
 interface Activity {
   date: string;
@@ -17,11 +18,21 @@ interface Activity {
 export function Activities() {
   const { tripId } = useParams()
   const [activities, setActivities] = useState<Activity[]>([])
+  
+  const [openEditModal, setOpenEditModal] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
-  useEffect(() => {
-    api.get(`trips/${tripId}/activities`).then(response => setActivities(response.data.activities))
-  }, [tripId])
-
+  function openModal(){
+    setOpenEditModal(true)
+  }
+  function closeModal(){
+    setOpenEditModal(false)
+  }
+  
+  
+    useEffect(() => {
+      api.get(`trips/${tripId}/activities`).then(response => setActivities(response.data.activities))
+    }, [tripId])
   return (
     <div className="space-y-8">
       {activities.map(category => {
@@ -36,12 +47,15 @@ export function Activities() {
                 {category.activities.map(activity => {
                   return (
                     <div key={activity.id} className="space-y-2.5">
-                      <div className="px-4 py-2.5 bg-zinc-900 rounded-xl shadow-shape flex items-center gap-3">
+                      <div onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)} className="px-4 py-2.5 bg-zinc-900 rounded-xl shadow-shape flex items-center gap-3 hover:">
                         <CircleCheck className="size-5 text-lime-300" />
                         <span className="text-zinc-100">{activity.title}</span>
                         <span className="text-zinc-400 text-sm ml-auto">
                           {format(activity.occurs_at, 'HH:mm')}h
                         </span>
+                        {isHovered && (
+                          <span onClick={openModal} >...</span>
+                        )}
                       </div>
                     </div>
                   )
@@ -53,6 +67,11 @@ export function Activities() {
           </div>
         )
       })}
+      {openEditModal && (
+        <UpdateActivityModal
+        closeUpdateModal={closeModal}
+        />
+      )}
     </div>
   )
 }
