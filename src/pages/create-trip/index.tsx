@@ -107,12 +107,13 @@ export function CreateTripPage() {
   return (
     <div className="h-screen flex items-center justify-center text-center bg-pattern bg-no-repeat bg-center">
       <div className="w-full max-w-3xl px-6 space-y-10">
+      
 
         <div className='flex flex-col items-center gap-3'>
             <img src='/logo.png' className='size-20 text-white' alt='Chrono'/>
             <p className="text-zinc-300 text-lg">Convide seus amigos e planeje sua próxima viagem!</p>
         </div>
-
+        
         <div className='space-y-4'>
 
         <DestinationAndDateSteps
@@ -123,6 +124,7 @@ export function CreateTripPage() {
         setEventStartEnd={setEventStartEnd}
         eventStartEnd={eventStartEnd}
         />
+        O banco de dados leva cerca de 60 segundos para carregar
 
         {isGuestsInputOpen && (
           <InviteGuestStep
